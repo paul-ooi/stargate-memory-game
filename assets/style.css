@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-auto-rows: 1fr;
+}
+
+#result {
+    color: purple;
+    font-weight: 700;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+}
+
+footer {
+    margin-top: 1em;
+    color: darkgrey;
+}
+
+footer a {
+    color: darkgray;
+    text-decoration: none;
+    font-style: italic;
+}
