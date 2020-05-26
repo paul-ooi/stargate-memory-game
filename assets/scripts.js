@@ -71,21 +71,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //Check for Matches
     function checkForMatch() {
-        var cards = document.querySelectorAll("img");
+        var cards = document.querySelectorAll("img.card");
         const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
 
         // Check the name of the img
         if (cardsChosen[0] === cardsChosen[1]) {
             alert("You Found a Match!");
-            cards[optionOneId].setAttribute("src", "./assets/img/sm-ring.jpg");
-            cards[optionTwoId].setAttribute("src", "./assets/img/sm-ring.jpg");
+            removeCard(cards[optionOneId]);
+            removeCard(cards[optionTwoId]);
 
             // Track Found Pairs
             cardsWon.push(cardsChosen);
         } else {
-            cards[optionOneId].setAttribute("src", "./assets/img/sq-puddle.jpg");
-            cards[optionTwoId].setAttribute("src", "./assets/img/sq-puddle.jpg");
+            resetCard(cards[optionOneId]);
+            resetCard(cards[optionTwoId]);
             alert("Sorry, try again.");
         }
 
@@ -105,6 +105,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // flip Card
     function flipCard() {
+        // add conditional to prevent clicking the same card
+        if (this.classList.contains("flipped")) return;
+
         var cardId = this.getAttribute("data-id");
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
@@ -114,5 +117,18 @@ document.addEventListener("DOMContentLoaded", function() {
         if (cardsChosen.length === 2) {
             setTimeout(checkForMatch, 500);
         }
+    }
+
+    function resetCard(target) {
+        target.setAttribute("src", "./assets/img/sq-puddle.jpg");
+    }
+
+    /**
+     * set completed image, remove Event Listener when Card is removed from play
+     * @param {HTMLElement} target 
+     */
+    function removeCard(target) {
+        target.setAttribute("src", "./assets/img/sm-ring.jpg");
+        target.removeEventListener("click", flipCard);
     }
 }); // End DOM Content Loaded
