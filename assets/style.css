@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(6, 100px);
@@ -12,6 +24,18 @@
 .card {
     width: 100px;
     height: 100px;
+    transition: transform 0.6s ease-out;
+    align-self: center;
+    justify-self: center;
+}
+
+.card.flipped {
+    /* width: 50px;
+    height: 50px; */
+    transform: rotateY(360deg);
+    transition: transform 0.6s ease-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
 
 footer {

@@ -3,39 +3,39 @@ document.addEventListener("DOMContentLoaded", function() {
     const originalCards = [
         {
             name : "giza",
-            img  : "./assets/img/01-giza.png"
+            img  : "./assets/img/01-giza.svg"
         },
         {
             name : "crater",
-            img  : "./assets/img/02-crater.png"
+            img  : "./assets/img/02-crater.svg"
         },
         {
             name : "virgo",
-            img  : "./assets/img/03-virgo.png"
+            img  : "./assets/img/03-virgo.svg"
         },
         {
             name : "bootes",
-            img  : "./assets/img/04-bootes.png"
+            img  : "./assets/img/04-bootes.svg"
         },
         {
             name : "centaurus",
-            img  : "./assets/img/05-centaurus.png"
+            img  : "./assets/img/05-centaurus.svg"
         },
         {
             name : "libra",
-            img  : "./assets/img/06-libra.png"
+            img  : "./assets/img/06-libra.svg"
         },
         {
             name : "serpens-caput",
-            img  : "./assets/img/07-serpens-caput.png"
+            img  : "./assets/img/07-serpens-caput.svg"
         },
         {
             name : "norma",
-            img  : "./assets/img/08-norma.png"
+            img  : "./assets/img/08-norma.svg"
         },
         {
             name : "scorpius",
-            img  : "./assets/img/09-scorpius.png"
+            img  : "./assets/img/09-scorpius.svg"
         }
     ];
 
@@ -93,6 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
         cardsChosenId = [];
         cardsChosen = [];
 
+        // Remove Flippped status
+        cards[optionOneId].classList.remove("flipped");
+        cards[optionTwoId].classList.remove("flipped");
+
         resultDisplay.textContent = cardsWon.length;
         if (cardsWon.length === cardArray.length / 2) {
             resultDisplay.textContent = cardsWon.length + " Congratulations, you won!";
@@ -105,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
         this.setAttribute("src", cardArray[cardId].img);
+        this.classList.add("flipped");
 
         if (cardsChosen.length === 2) {
             setTimeout(checkForMatch, 500);
