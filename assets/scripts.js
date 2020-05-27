@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     ];
 
+    preloadSvgImages(originalCards);
+
     //Duplicate Original Cards, and setup their pairs
     cardArray = Array.prototype.concat(originalCards, originalCards);
     // Randomize the cards
@@ -132,3 +134,18 @@ document.addEventListener("DOMContentLoaded", function() {
         target.removeEventListener("click", flipCard);
     }
 }); // End DOM Content Loaded
+
+/**
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content#Scripting_and_preloads
+ * Preload the svgs as images
+ * @param {Array} cardArray array of objects with svg path at img property
+ */
+function preloadSvgImages(cardArray) {
+    cardArray.forEach((card) => {
+        let preloadLink = document.createElement("link");
+        preloadLink.href = card.img;
+        preloadLink.rel = "preload";
+        preloadLink.as = "image";
+        document.head.appendChild(preloadLink);
+    });
+}
